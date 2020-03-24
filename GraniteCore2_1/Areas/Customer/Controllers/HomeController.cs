@@ -8,6 +8,7 @@ using GraniteCore2_1.Models;
 
 namespace GraniteCore2_1.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public IActionResult Index()
