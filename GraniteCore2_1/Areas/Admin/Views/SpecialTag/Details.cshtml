@@ -1,0 +1,25 @@
+﻿@model GraniteCore2_1.Models.SpecialTag
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-info">Special tag details</h2>
+<br />
+    <div class="p-4 porder rounded">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" disabled class="form-control" />
+            </div>
+            
+        </div>
+        <br />
+        <div class="form-group">
+            <a type="submit" value="Edit" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
+
