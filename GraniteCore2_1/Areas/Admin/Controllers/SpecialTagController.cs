@@ -74,20 +74,6 @@ namespace GraniteCore2_1.Areas.Admin.Controllers
             }
             return NotFound();
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Details(SpecialTag specialTag)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Update(specialTag);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(specialTag);
-        //}
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id != null)
