@@ -1,0 +1,115 @@
+﻿
+@model GraniteCore2_1.Models.Product
+@using Microsoft.AspNetCore.Http
+@using GraniteCore2_1.Extentions
+@using GraniteCore2_1.Utility
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<h2 class="text-info">product Details</h2>
+<br />
+<form method="post">
+    <div class="p-4 porder rounded">
+        <div class="row border p-4">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Name" class="form-control" readonly />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ShadeColor"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="color" asp-for="ShadeColor" class="form-control" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Price"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Price" class="form-control" readonly />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ProductType.Name">Product type</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ProductType.Name" class="form-control" readonly />
+                    </div>
+
+                </div>
+                @if (!Model.SpecialTag.Name.Equals("--None--"))
+                {
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="SpecialTag.Name">Special tag</label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="SpecialTag.Name" class="form-control" readonly />
+                        </div>
+                    </div>
+                }
+                <div class="form-group row">
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-8">
+                        @{
+                            bool isInBag = false;
+                            var cartList = HttpContextAccessor.HttpContext.Session.Get<List<int>>("shoppingCartSession");
+                            if (cartList != null && cartList.Contains(Model.Id))
+                            {
+                                isInBag = true;
+                            }
+                        }
+                        @if (isInBag)
+                        {
+                            <input type="submit" class="btn btn-danger form-control" value="Remove from bag" asp-action="Remove" asp-route-id="@Model.Id" />
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-primary form-control" value="Add to bag" asp-route-id="@Model.Id" />
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3">
+                <div>
+                    <img src="@Model.Image" class="" style="width:100%; border-radius:10px; border:solid 1px #aaa" />
+                </div>
+                <br />
+                <br />
+                <div>
+                    @if (Model.IsAvailable)
+                    {
+                        <label class="btn btn-success">In stock</label>
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <a asp-action="Index" class="btn btn-success">Back to list</a>
+        </div>
+    </div>
+</form>
+
+
+
+

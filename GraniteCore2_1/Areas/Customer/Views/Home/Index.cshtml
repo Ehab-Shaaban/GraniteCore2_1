@@ -1,7 +1,36 @@
-﻿@{
+﻿@model List<GraniteCore2_1.Models.Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+
 <br />
-<h2>Home</h2>
 <br />
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <label style="font-size:30px; color:steelblue">@item.Name</label>
+                    </h4>
+                </div>
+                <div class="card-body" style="height:250px">
+                    <img class="card-img-top" style="height:100%" src="@item.Image" alt="card image" />
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-content-center">
+                        <div class="btn-group">
+                            <label style="font-size:22px; color:#a51313">
+                                <b>$@item.Price</b>/m<sup>2</sup>
+                            </label>
+                        </div>
+                        <a asp-action="Details" asp-controller="Home" class="btn pull-right btn-outline-info" asp-route-id="@item.Id">View details</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
