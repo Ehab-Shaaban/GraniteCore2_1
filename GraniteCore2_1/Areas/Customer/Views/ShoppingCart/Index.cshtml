@@ -1,0 +1,132 @@
+﻿@model GraniteCore2_1.Models.ViewModels.ShoppingCartViewModel
+
+
+<form method="post">
+    <br /><br />
+    <h2 class="text-info">
+        Your shopping cart
+    </h2>
+    <br />
+    @if (Model.ProductList!=null)
+    {
+        <div class="container border border-secondary rounded" style="padding:15px">
+            <div class="row">
+                <div class="col-8" style="border-right:1px solid #bbb9b9">
+                    <table class="table table-striped" style="width:100%">
+                        <tr class="table-info">
+                            <th style="text-align:center; width:20%"></th>
+                            <th style="text-align:center">
+                                @Html.DisplayNameFor(n=>n.ProductList[0].Name)
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayNameFor(n => n.ProductList[0].Price)
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayNameFor(n => n.ProductList[0].ShadeColor)
+                            </th>
+                            <th style="text-align:center">
+                                <span>Product type</span>
+                                @*@Html.DisplayNameFor(n => n.ProductList[0].ProductType.Name)*@
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                        @foreach(var item in Model.ProductList)
+                        {
+                    <tr style="padding:50px">
+                        <td>
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
+                                <img src="@item.Image" style="width:100%; display:block; margin:auto; border-radius:5px; border:1px solid #bbb9b9;" />
+                            </a>
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(d => item.Name)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(d => item.Price)
+                        </td>
+                        <td style="text-align:center">
+                            <input type="color" disabled asp-for="@item.ShadeColor" />
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(d => item.ProductType.Name)
+                        </td>
+                        <td style="text-align:center">
+                           <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+                <div class="col-4" style="padding:30px">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Name: </label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Appointment.CustomerName" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Phone number: </label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Appointment.CustomerPhone" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Email: </label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Appointment.CustomerEmail" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Appointment Date: </label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input type="" id="datepicker" asp-for="@Model.Appointment.AppointmentDate" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label>Appointment time: </label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input type="" asp-for="@Model.Appointment.AppointmentTime" class="form-control timepicker" />
+                        </div>
+                        <div class="col-12" style="padding-top:15px">
+                            <button type="submit" id="btnPlaceOrder" class="btn btn-success" >Shedule appointment</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2 class="text-info">No items in your shopping cart</h2>
+    }
+</form>
+
+@section scripts{
+<script>
+    @* datepicker and timepicker nere *@
+
+    $("#datepicker").datepicker({
+        
+        minDate: "+1",
+        maxDate:"+3M"
+    });
+
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '9',
+        maxTime: '11:00pm',
+        defaultTime: 'now',
+        startTime: '9:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+ }
+

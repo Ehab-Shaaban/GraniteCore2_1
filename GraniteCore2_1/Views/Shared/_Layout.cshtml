@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/lib/fontawesome-free-5.13.0-web/css/all.css">
+        <link href="~/css/jquery.timepicker.css" rel="stylesheet" />
+        <link href="~/css/jquery-ui.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -21,6 +23,8 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/fontawesome-free-5.13.0-web/css/all.css">
+        <link href="~/css/jquery.timepicker.css" rel="stylesheet" />
+        <link href="~/css/jquery-ui.css" rel="stylesheet" />
     </environment>
 </head>
 <body>
@@ -46,7 +50,7 @@
                     @if (HttpContextAccessor.HttpContext.Session.Get <List<int>>("shoppingCartSession") != null)
                     {
                         <li>
-                            <a asp-area="Customer" asp-action="Index" asp-controller="ShoppingCart" class="nav-link">
+                            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
                                 @{
                                     var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("shoppingCartSession").Count;
                                 }
@@ -58,9 +62,11 @@
                     else
                     {
                         <li>
-                            <a asp-area="Customer" asp-action="Index" asp-controller="ShoppingCart" class="nav-link">
+                            @*<a asp-area="Customer" asp-action="Index" asp-controller="ShoppingCart" class="nav-link">*@
+                            <span class="nav-link">
                                 <i class="fas fa-shopping-cart"></i> &nbsp;(0)
-                            </a>
+                            </span>
+                            @*</a>*@
                         </li>
                     }
                 </ul>
@@ -88,6 +94,8 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js"></script>
+        <script src="~/js/jquery-ui.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -103,6 +111,8 @@
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js"></script>
+        <script src="~/js/jquery-ui.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

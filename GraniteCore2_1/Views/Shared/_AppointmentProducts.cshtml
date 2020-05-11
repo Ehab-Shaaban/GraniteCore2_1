@@ -1,0 +1,56 @@
+﻿@model List<GraniteCore2_1.Models.Product>
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped" style="width:100%">
+        <tr class="table-info">
+            <th style="text-align:center; width:20%"></th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(n => n.FirstOrDefault().Name)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(n => n.FirstOrDefault().Price)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(n => n.FirstOrDefault().ShadeColor)
+            </th>
+            <th style="text-align:center">
+                <span>Product type</span>
+                @*@Html.DisplayNameFor(n => n.ProductList[0].ProductType.Name)*@
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="padding:50px">
+                <td>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.Image" style="width:100%; display:block; margin:auto; border-radius:5px; border:1px solid #bbb9b9;" />
+                    </a>
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(d => item.Name)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(d => item.Price)
+                </td>
+                <td style="text-align:center">
+                    <input type="color" disabled asp-for="@item.ShadeColor" />
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(d => item.ProductType.Name)
+                </td>
+                <td style="text-align:center">
+                    <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h2 class="text-info">no products</h2>
+}
+

@@ -1,0 +1,40 @@
+﻿@model GraniteCore2_1.Models.Appointment
+
+
+<h2 class="text-success">Apointment details</h2>
+<div class="container border" style="background-color:aliceblue">
+    <div class="col-12">
+        <div class="row" style="padding-top:10px">
+            <div class="col-2">
+                Full name: 
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.CustomerName" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+            </div>
+            <div class="col-2">
+               Phone: 
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.CustomerPhone" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="row" style="padding-top:10px">
+            <div class="col-2">
+                Email: 
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.CustomerEmail" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+            </div>
+            <div class="col-2">
+                Appointment date: 
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.AppointmentDate" readonly class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>

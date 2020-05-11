@@ -16,5 +16,7 @@ namespace GraniteCore2_1.Data
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<SpecialTag> SpecialTags { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<ProductsSelectedForAppointment> ProductsSelectedForAppointments { get; set; }
     }
 }
