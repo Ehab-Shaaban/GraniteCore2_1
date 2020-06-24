@@ -37,6 +37,7 @@
             </button>
             <div class="navbar-collapse collapse d-md-inline-flex flex-md-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
+                    @if (User.IsInRole(SD.SuperAdminEndUser)) { 
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Admin" asp-controller="ProductType" asp-action="Index">Product types</a>
                     </li>
@@ -46,8 +47,11 @@
                     <li>
                         <a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
                     </li>
-
-                    @if (HttpContextAccessor.HttpContext.Session.Get <List<int>>("shoppingCartSession") != null)
+                    <li>
+                        <a class="nav-link" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin users</a>
+                    </li>
+                    }
+                    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("shoppingCartSession") != null)
                     {
                         <li>
                             <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">

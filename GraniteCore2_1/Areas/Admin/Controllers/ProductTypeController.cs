@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraniteCore2_1.Data;
 using GraniteCore2_1.Models;
+using GraniteCore2_1.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GraniteCore2_1.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area("Admin")]
     public class ProductTypeController : Controller
     {
